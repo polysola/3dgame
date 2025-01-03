@@ -21,7 +21,7 @@ const HomeInfo = ({ currentStage, score, user }) => {
           </div>
         ) : (
           <p className='font-medium text-center sm:text-xl'>
-            Hi, I'm Aridan 👋
+            Hi, I'm PhoeniXRP 👋
           </p>
         )}
         <div className='mt-4 bg-white/90 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-all'>
