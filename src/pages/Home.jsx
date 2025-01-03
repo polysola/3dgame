@@ -5,6 +5,7 @@ import sakura from "../assets/sakura.mp3";
 import { HomeInfo, Loader } from "../components";
 import { soundoff, soundon } from "../assets/icons";
 import { Bird, Island, Plane, Sky } from "../models";
+import { getUserData } from '../utils/telegram';
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -14,6 +15,8 @@ const Home = () => {
   const [currentStage, setCurrentStage] = useState(1);
   const [isRotating, setIsRotating] = useState(false);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
+  const [score, setScore] = useState(0);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     if (isPlayingMusic) {
@@ -24,6 +27,13 @@ const Home = () => {
       audioRef.current.pause();
     };
   }, [isPlayingMusic]);
+
+  useEffect(() => {
+    const userData = getUserData();
+    if (userData) {
+      setUser(userData);
+    }
+  }, []);
 
   const adjustBiplaneForScreenSize = () => {
     let screenScale, screenPosition;
@@ -60,13 +70,12 @@ const Home = () => {
   return (
     <section className='w-full h-screen relative'>
       <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
-        {currentStage && <HomeInfo currentStage={currentStage} />}
+        {currentStage && <HomeInfo currentStage={currentStage} score={score} />}
       </div>
 
       <Canvas
-        className={`w-full h-screen bg-transparent ${
-          isRotating ? "cursor-grabbing" : "cursor-grab"
-        }`}
+        className={`w-full h-screen bg-transparent ${isRotating ? "cursor-grabbing" : "cursor-grab"
+          }`}
         camera={{ near: 0.1, far: 1000 }}
       >
         <Suspense fallback={<Loader />}>
@@ -100,6 +109,7 @@ const Home = () => {
             position={biplanePosition}
             rotation={[0, 20.1, 0]}
             scale={biplaneScale}
+            setScore={setScore}
           />
         </Suspense>
       </Canvas>
