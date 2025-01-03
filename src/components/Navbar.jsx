@@ -9,11 +9,14 @@ const Navbar = () => {
         <img src={logo} alt='logo' className='w-18 h-18 object-contain' />
       </NavLink>
       <nav className='flex text-lg gap-7 font-medium'>
-        <NavLink to='/about' className={({ isActive }) => isActive ? "text-blue-600" : "text-black" }>
-          About
+        <NavLink to='https://t.me/PhoeniXRP_Portal' className={({ isActive }) => isActive ? "text-blue-600" : "text-black"}>
+          TG
         </NavLink>
-        <NavLink to='/projects' className={({ isActive }) => isActive ? "text-blue-600" : "text-black"}>
-          Projects
+        <NavLink to='https://x.com/PhoeniXRP_app' className={({ isActive }) => isActive ? "text-blue-600" : "text-black"}>
+          X
+        </NavLink>
+        <NavLink to='https://firstledger.net/' className={({ isActive }) => isActive ? "text-blue-600" : "text-black"}>
+          Buy
         </NavLink>
       </nav>
     </header>
