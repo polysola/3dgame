@@ -10,25 +10,33 @@ export function Plane({ isRotating, setScore, ...props }) {
   const { scene, animations } = useGLTF(planeScene);
   const { actions } = useAnimations(animations, ref);
   const tg = window.Telegram.WebApp;
-
-  const [score, setLocalScore] = useState(0); // Trạng thái điểm cục bộ
+  const [localScore, setLocalScore] = useState(() => {
+    const savedScore = localStorage.getItem('userScore');
+    return savedScore ? parseInt(savedScore) : 0;
+  });
 
   // Hàm gửi điểm đến Telegram bot
   const sendScoreToBot = async (finalScore) => {
     if (finalScore === 0) return; // Không gửi nếu điểm bằng 0
     const botToken = "8059271596:AAFAsl83AO_mKUpVm1kIoEyDpL51dxRySxs";
     const chatId = "-1002462829019";
-
     const userName = tg.initDataUnsafe?.user?.first_name || "Unknown Player";
+    const previousHighScore = localStorage.getItem('highScore') || 0;
+    const isNewHighScore = finalScore > previousHighScore;
 
-    // Tạo thông điệp đẹp mắt với Markdown và Emoji
+    if (isNewHighScore) {
+      localStorage.setItem('highScore', finalScore.toString());
+    }
+
     const message = `
-🚀 *Score Update!*
+🎮 *${isNewHighScore ? 'NEW HIGH SCORE!' : 'Score Update'}*
 ━━━━━━━━━━━━━━━━━━━━
 👤 *Player*: ${userName}
-🎯 *Score*: ${finalScore}
+🎯 *Current Score*: ${finalScore}
+🏆 *High Score*: ${isNewHighScore ? finalScore : previousHighScore}
+${isNewHighScore ? '🌟 Congratulations on the new record!' : ''}
 ━━━━━━━━━━━━━━━━━━━━
-✨ Keep up the great work and reach new heights!
+✨ Keep pushing your limits!
     `;
 
     try {
@@ -43,9 +51,8 @@ export function Plane({ isRotating, setScore, ...props }) {
           parse_mode: "Markdown", // Sử dụng định dạng Markdown
         }),
       });
-      console.log("Final score sent to bot successfully:", finalScore);
     } catch (error) {
-      console.error("Error sending final score to bot:", error);
+      console.error("Error sending score to bot:", error);
     }
   };
 
@@ -63,13 +70,13 @@ export function Plane({ isRotating, setScore, ...props }) {
       actions["Take 001"].play();
       setLocalScore((prevScore) => {
         const newScore = prevScore + 1;
+        localStorage.setItem('userScore', newScore.toString());
         setScore(newScore); // Đồng bộ với trạng thái cha
-        console.log("Current Score:", newScore); // Kiểm tra giá trị tăng
         return newScore;
       });
     } else {
       actions["Take 001"].stop();
-      debouncedSendFinalScore(score); // Gửi điểm cuối cùng sau khi dừng quay
+      debouncedSendFinalScore(localScore); // Gửi điểm cuối cùng sau khi dừng quay
     }
 
     // Cleanup function để hủy debounce khi component unmount hoặc isRotating thay đổi

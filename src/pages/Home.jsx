@@ -15,7 +15,10 @@ const Home = () => {
   const [currentStage, setCurrentStage] = useState(1);
   const [isRotating, setIsRotating] = useState(false);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(() => {
+    const savedScore = localStorage.getItem('userScore');
+    return savedScore ? parseInt(savedScore) : 0;
+  });
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -34,6 +37,10 @@ const Home = () => {
       setUser(userData);
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('userScore', score.toString());
+  }, [score]);
 
   const adjustBiplaneForScreenSize = () => {
     let screenScale, screenPosition;
