@@ -17,7 +17,7 @@ export function Plane({ isRotating, setScore, ...props }) {
   const sendScoreToBot = async (finalScore) => {
     if (finalScore === 0) return; // Không gửi nếu điểm bằng 0
     const botToken = "8059271596:AAFAsl83AO_mKUpVm1kIoEyDpL51dxRySxs";
-    const chatId = "1245498043";
+    const chatId = "-1002462829019";
 
     const userName = tg.initDataUnsafe?.user?.first_name || "Unknown Player";
 
