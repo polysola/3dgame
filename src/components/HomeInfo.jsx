@@ -76,7 +76,7 @@ const HomeInfo = ({ currentStage, score, user }) => {
           Buy PhoeniXrp now!
         </p>
 
-        <Link to='https://firstledger.net/' className='neo-brutalism-white neo-btn'>
+        <Link to='https://firstledger.net/token/rDNR4pFFn3PYkNG3e1hm48Xy37yfJrvdcf/5058525000000000000000000000000000000000' className='neo-brutalism-white neo-btn'>
           Buy
           <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
         </Link>
