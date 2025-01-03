@@ -73,11 +73,11 @@ const HomeInfo = ({ currentStage, score, user }) => {
     return (
       <div className='info-box'>
         <p className='font-medium sm:text-xl text-center'>
-          Need a project done or looking for a dev? <br /> I'm just a few keystrokes away
+          Buy PhoeniXrp now!
         </p>
 
-        <Link to='/contact' className='neo-brutalism-white neo-btn'>
-          Let's talk
+        <Link to='https://firstledger.net/' className='neo-brutalism-white neo-btn'>
+          Buy
           <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
         </Link>
       </div>
