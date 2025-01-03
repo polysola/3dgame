@@ -23,13 +23,12 @@ export function Plane({ isRotating, setScore, ...props }) {
 
     // Tạo thông điệp đẹp mắt với Markdown và Emoji
     const message = `
-    🏆 *🎮 PHOENIXRP SCORE UPDATE 🎮*
-    ━━━━━━━━━━━━━━━━━━━━
-    👤 *Player:* ${userName}
-    🎯 *Score:* ${finalScore}
-    ━━━━━━━━━━━━━━━━━━━━
-    🔥 *Keep pushing your limits and dominate the leaderboard!*
-    🎉 *Congratulations!* 🎉
+🚀 *Score Update!*
+━━━━━━━━━━━━━━━━━━━━
+👤 *Player*: ${userName}
+🎯 *Score*: ${finalScore}
+━━━━━━━━━━━━━━━━━━━━
+✨ Keep up the great work and reach new heights!
     `;
 
     try {
