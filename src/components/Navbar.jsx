@@ -15,7 +15,7 @@ const Navbar = () => {
         <NavLink to='https://x.com/PhoeniXRP_Game' className={({ isActive }) => isActive ? "text-blue-600" : "text-black"}>
           X
         </NavLink>
-        <NavLink to='https://firstledger.net/' className={({ isActive }) => isActive ? "text-blue-600" : "text-black"}>
+        <NavLink to='https://firstledger.net/token/r4BumVWyA2jXtMKYN9XisyVCx2Hs8TtrWc/50686F656E695800000000000000000000000000' className={({ isActive }) => isActive ? "text-blue-600" : "text-black"}>
           Buy
         </NavLink>
       </nav>
