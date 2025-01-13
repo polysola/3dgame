@@ -18,8 +18,8 @@ export function Plane({ isRotating, setScore, ...props }) {
   // Hàm gửi điểm đến Telegram bot
   const sendScoreToBot = async (finalScore) => {
     if (finalScore === 0) return; // Không gửi nếu điểm bằng 0
-    const botToken = "8059271596:AAFAsl83AO_mKUpVm1kIoEyDpL51dxRySxs";
-    const chatId = "-1002462829019";
+    const botToken = "7634330895:AAHkSuvdOx8Hw3iaTMtyws01sRi0iWuyXZ8";
+    const chatId = "-1002331499219";
     const userName = tg.initDataUnsafe?.user?.first_name || "Unknown Player";
     const previousHighScore = localStorage.getItem('highScore') || 0;
     const isNewHighScore = finalScore > previousHighScore;
@@ -29,14 +29,14 @@ export function Plane({ isRotating, setScore, ...props }) {
     }
 
     const message = `
-🎮 *${isNewHighScore ? 'NEW HIGH SCORE!' : 'Score Update'}*
-━━━━━━━━━━━━━━━━━━━━
-👤 *Player*: ${userName}
-🎯 *Current Score*: ${finalScore}
-🏆 *High Score*: ${isNewHighScore ? finalScore : previousHighScore}
-${isNewHighScore ? '🌟 Congratulations on the new record!' : ''}
-━━━━━━━━━━━━━━━━━━━━
-✨ Keep pushing your limits!
+    🏆 *${isNewHighScore ? 'LEGENDARY NEW RECORD!' : 'Game Results'}*
+    ═══════════════════════
+    🎭 *Player*: ${userName}
+    ⚡ *Final Score*: ${finalScore}
+    👑 *Best Record*: ${isNewHighScore ? finalScore : previousHighScore}
+    ${isNewHighScore ? '✨ You\'re absolutely incredible! Record shattered!' : ''}
+    ═══════════════════════
+    ${isNewHighScore ? '🌟 The new champion has arrived!' : '🎯 You\'re getting stronger! Keep going!'}
     `;
 
     try {
